@@ -1,0 +1,59 @@
+package first;
+class AttendanveManagementSystem extends Thread {
+    private String className;
+
+    public AttendanveManagementSystem(String className) {
+        this.className = className;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) { 
+            System.out.println("Day " + i + " - " + className + " Class: ");
+            System.out.println("Students Present:");
+          
+            System.out.println("Saurabh");
+            System.out.println("Yash");
+            System.out.println("Ruchir");
+            try {
+                Thread.sleep(1000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class RunnableAttendance implements Runnable {
+    private String studentName;
+
+    public RunnableAttendance(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public void run() {
+        System.out.println("Student " + studentName + " arrived late.");
+    }
+}
+
+public class a1 {
+    public static void main(String[] args) {
+       
+        AttendanveManagementSystem class1 = new AttendanveManagementSystem("Class 1");
+        AttendanveManagementSystem class2 = new AttendanveManagementSystem("Class 2");
+        
+        class1.start();
+        class2.start();
+
+      
+        RunnableAttendance student1 = new RunnableAttendance("Saurabh");
+        RunnableAttendance student2 = new RunnableAttendance("Yash");
+        RunnableAttendance student3 = new RunnableAttendance("Ruchir");
+       
+        Thread lateStudentsThread1 = new Thread(student1);
+        lateStudentsThread1.start();
+        Thread lateStudentsThread2 = new Thread(student2);
+        lateStudentsThread2.start();
+        Thread lateStudentsThread3 = new Thread(student3);
+        lateStudentsThread3.start();
+    }
+}

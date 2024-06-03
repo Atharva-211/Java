@@ -1,0 +1,51 @@
+package first;
+
+// Define an interface named Vehicle
+interface Vehicle {
+    // Interface method to start the vehicle
+    void start();
+
+    // Interface method to stop the vehicle
+    void stop();
+}
+
+// Class Car implementing the Vehicle interface
+class Car implements Vehicle {
+    // Implementing start method for Car
+    public void start() {
+        System.out.println("Car started");
+    }
+
+    // Implementing stop method for Car
+    public void stop() {
+        System.out.println("Car stopped");
+    }
+}
+
+// Class Bike implementing the Vehicle interface
+class Bike implements Vehicle {
+    // Implementing start method for Bike
+    public void start() {
+        System.out.println("Bike started");
+    }
+
+    // Implementing stop method for Bike
+    public void stop() {
+        System.out.println("Bike stopped");
+    }
+}
+
+public class a1 {
+    public static void main(String[] args) {
+        // Create objects of Car and Bike
+        Car car = new Car();
+        Bike bike = new Bike();
+
+        // Call methods defined in the Vehicle interface
+        car.start();
+        car.stop();
+
+        bike.start();
+        bike.stop();
+    }
+}

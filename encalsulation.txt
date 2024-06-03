@@ -1,0 +1,46 @@
+package first;
+
+public class a1 {
+    private String name;
+    private int age;
+
+    public a1(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Age must be positive.");
+        }
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    public static void main(String[] args) {
+        a1 person = new a1("Alice", 30);
+        person.displayInfo();
+
+        person.setName("Bob");
+        person.setAge(35);
+        person.displayInfo();
+
+        person.setAge(-5);
+    }
+}

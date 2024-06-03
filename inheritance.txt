@@ -1,0 +1,391 @@
+single
+package first;
+
+public class a1 {
+
+    static class Animal {
+        private String name;
+
+        public Animal(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void eat() {
+            System.out.println(name + " is eating.");
+        }
+
+        public void sleep() {
+            System.out.println(name + " is sleeping.");
+        }
+    }
+
+    static class Dog extends Animal {
+
+        public Dog(String name) {
+            super(name);
+        }
+
+        public void bark() {
+            System.out.println(getName() + " is barking.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Dog dog = new Dog("Buddy");
+
+        // Calling methods from the superclass
+        dog.eat();
+        dog.sleep();
+
+        // Calling method from the subclass
+        dog.bark();
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------
+multilevel
+package first;
+
+public class a1 {
+
+    static class Vehicle {
+        private String brand;
+
+        public Vehicle(String brand) {
+            this.brand = brand;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public void start() {
+            System.out.println(brand + " is starting.");
+        }
+
+        public void stop() {
+            System.out.println(brand + " is stopping.");
+        }
+    }
+
+    static class Car extends Vehicle {
+        private int numberOfDoors;
+
+        public Car(String brand, int numberOfDoors) {
+            super(brand);
+            this.numberOfDoors = numberOfDoors;
+        }
+
+        public int getNumberOfDoors() {
+            return numberOfDoors;
+        }
+
+        public void honk() {
+            System.out.println(getBrand() + " is honking.");
+        }
+    }
+
+    static class ElectricCar extends Car {
+        private int batteryLife;
+
+        public ElectricCar(String brand, int numberOfDoors, int batteryLife) {
+            super(brand, numberOfDoors);
+            this.batteryLife = batteryLife;
+        }
+
+        public int getBatteryLife() {
+            return batteryLife;
+        }
+
+        public void charge() {
+            System.out.println(getBrand() + " is charging. Battery life: " + batteryLife + " hours.");
+        }
+    }
+
+    public static void main(String[] args) {
+        ElectricCar myTesla = new ElectricCar("Tesla", 4, 24);
+
+        // Calling methods from the Vehicle class
+        myTesla.start();
+        myTesla.stop();
+
+        // Calling methods from the Car class
+        myTesla.honk();
+
+        // Calling methods from the ElectricCar class
+        myTesla.charge();
+
+        // Displaying specific attributes
+        System.out.println("Brand: " + myTesla.getBrand());
+        System.out.println("Number of doors: " + myTesla.getNumberOfDoors());
+        System.out.println("Battery life: " + myTesla.getBatteryLife() + " hours.");
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+hierachial inheritance
+package first;
+
+public class a1 {
+
+    static class Person {
+        private String name;
+        private int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void introduce() {
+            System.out.println("Hi, my name is " + name + " and I am " + age + " years old.");
+        }
+    }
+
+    static class Teacher extends Person {
+        private String subject;
+
+        public Teacher(String name, int age, String subject) {
+            super(name, age);
+            this.subject = subject;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public void teach() {
+            System.out.println(getName() + " is teaching " + subject + ".");
+        }
+    }
+
+    static class Student extends Person {
+        private String major;
+
+        public Student(String name, int age, String major) {
+            super(name, age);
+            this.major = major;
+        }
+
+        public String getMajor() {
+            return major;
+        }
+
+        public void study() {
+            System.out.println(getName() + " is studying " + major + ".");
+        }
+    }
+
+    public static void main(String[] args) {
+        Teacher teacher = new Teacher("Alice", 40, "Mathematics");
+        Student student = new Student("Bob", 20, "Computer Science");
+
+        // Using methods from the Person class
+        teacher.introduce();
+        student.introduce();
+
+        // Using methods from the Teacher class
+        teacher.teach();
+        System.out.println("Teacher's subject: " + teacher.getSubject());
+
+        // Using methods from the Student class
+        student.study();
+        System.out.println("Student's major: " + student.getMajor());
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+hybrid inheritance
+package first;
+
+public class a1 {
+
+    // Base class
+    static class Device {
+        private String brand;
+
+        public Device(String brand) {
+            this.brand = brand;
+        }
+
+        public String getBrand() {
+            return brand;
+        }
+
+        public void turnOn() {
+            System.out.println(brand + " device is turning on.");
+        }
+
+        public void turnOff() {
+            System.out.println(brand + " device is turning off.");
+        }
+    }
+
+    // Interface
+    interface Portable {
+        void carry();
+    }
+
+    // Subclass of Device and implements Portable
+    static class Phone extends Device implements Portable {
+        private String model;
+
+        public Phone(String brand, String model) {
+            super(brand);
+            this.model = model;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        @Override
+        public void carry() {
+            System.out.println(getBrand() + " " + model + " is portable and can be carried around.");
+        }
+
+        public void makeCall(String number) {
+            System.out.println(getBrand() + " " + model + " is calling " + number + ".");
+        }
+    }
+
+    // Subclass of Device and implements Portable
+    static class Laptop extends Device implements Portable {
+        private int batteryLife;
+
+        public Laptop(String brand, int batteryLife) {
+            super(brand);
+            this.batteryLife = batteryLife;
+        }
+
+        public int getBatteryLife() {
+            return batteryLife;
+        }
+
+        @Override
+        public void carry() {
+            System.out.println(getBrand() + " laptop with battery life of " + batteryLife + " hours is portable and can be carried around.");
+        }
+
+        public void compileCode() {
+            System.out.println(getBrand() + " laptop is compiling code.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Phone myPhone = new Phone("Samsung", "Galaxy S21");
+        Laptop myLaptop = new Laptop("Dell", 8);
+
+        // Using methods from the Device class
+        myPhone.turnOn();
+        myPhone.turnOff();
+        myLaptop.turnOn();
+        myLaptop.turnOff();
+
+        // Using methods from the Phone class
+        myPhone.makeCall("123-456-7890");
+        myPhone.carry();
+        System.out.println("Phone model: " + myPhone.getModel());
+
+        // Using methods from the Laptop class
+        myLaptop.compileCode();
+        myLaptop.carry();
+        System.out.println("Laptop battery life: " + myLaptop.getBatteryLife() + " hours");
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+multiple inheritance using interface
+package first;
+
+public class a1 {
+
+    static class Person {
+        private String name;
+        private int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void introduce() {
+            System.out.println("Hi, my name is " + name + " and I am " + age + " years old.");
+        }
+    }
+
+    interface Employee {
+        void work();
+        double getSalary();
+    }
+
+    interface Student {
+        void study();
+        String getMajor();
+    }
+
+    static class WorkingStudent extends Person implements Employee, Student {
+        private double salary;
+        private String major;
+
+        public WorkingStudent(String name, int age, double salary, String major) {
+            super(name, age);
+            this.salary = salary;
+            this.major = major;
+        }
+
+        // Implement Employee methods
+        @Override
+        public void work() {
+            System.out.println(getName() + " is working and earning a salary of " + salary);
+        }
+
+        @Override
+        public double getSalary() {
+            return salary;
+        }
+
+        // Implement Student methods
+        @Override
+        public void study() {
+            System.out.println(getName() + " is studying " + major);
+        }
+
+        @Override
+        public String getMajor() {
+            return major;
+        }
+    }
+
+    public static void main(String[] args) {
+        WorkingStudent john = new WorkingStudent("John Doe", 22, 20000, "Computer Science");
+
+        // Using methods from the Person class
+        john.introduce();
+
+        // Using methods from the Employee interface
+        john.work();
+        System.out.println("Salary: " + john.getSalary());
+
+        // Using methods from the Student interface
+        john.study();
+        System.out.println("Major: " + john.getMajor());
+    }
+}
+

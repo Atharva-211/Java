@@ -1,0 +1,29 @@
+package first;
+
+public class a1 {
+    // Attributes of the class
+    private String name;
+    private int age;
+
+    // Constructor to initialize the attributes
+    public a1 (String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to display person information
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+
+    // Main method to create and interact with Person objects
+    public static void main(String[] args) {
+        // Creating instances of the Person class
+        a1 person1 = new a1("Alice", 30);
+        a1 person2 = new a1("Bob", 25);
+
+        // Calling methods on the instances
+        person1.displayInfo();
+        person2.displayInfo();
+    }
+}

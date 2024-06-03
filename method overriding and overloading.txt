@@ -1,0 +1,58 @@
+public class loadingandridng  //overiding
+{
+    static class base
+    {
+        void print()
+        {
+            System.out.println("I am base class");
+        }
+
+    }
+
+    static class derived extends base
+    {
+
+       void print()
+        {
+            System.out.println("I am derived class ");
+        }
+
+    }
+
+    public static void main(String[] args)
+    {
+      // base p = new base();
+        derived q = new derived();
+
+        q.print();
+
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+package first;
+
+public class a1 {
+
+    // Overloaded method to add two integers
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Overloaded method to add two doubles
+    static double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        // Calling the overloaded method with integer parameters
+        int resultInt = add(5, 10);
+        System.out.println("Sum of integers: " + resultInt);
+
+        // Calling the overloaded method with double parameters
+        double resultDouble = add(3.5, 2.7);
+        System.out.println("Sum of doubles: " + resultDouble);
+    }
+}
+

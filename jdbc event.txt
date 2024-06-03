@@ -1,0 +1,314 @@
+package ass6;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class EventManagementSystem {
+
+    // Database URL, username, and password
+    private static final String URL = "jdbc:mysql://localhost:3306/mydatabase";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "1608";
+
+    // JDBC connection
+    private Connection connection;
+    private Scanner scanner;
+
+    public EventManagementSystem() {
+        try {
+            // Create a connection to the database
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("Connected to database!");
+            scanner = new Scanner(System.in);
+        } catch (SQLException e) {
+            System.out.println("Connection failed");
+            e.printStackTrace();
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            if (connection != null) {
+                connection.close();
+                System.out.println("Connection closed");
+            }
+            if (scanner != null) {
+                scanner.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error closing connection");
+            e.printStackTrace();
+        }
+    }
+
+    public void displayMainMenu() {
+        boolean exit = false;
+
+        while (!exit) {
+            System.out.println("\nMain Menu:");
+            System.out.println("1. Events");
+            System.out.println("2. Participants");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    eventMenu();
+                    break;
+                case 2:
+                    participantMenu();
+                    break;
+                case 3:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    public void eventMenu() {
+        boolean backToMainMenu = false;
+
+        while (!backToMainMenu) {
+            System.out.println("\nEvent Menu:");
+            System.out.println("1. Create Event");
+            System.out.println("2. Update Event");
+            System.out.println("3. Track Event");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    createEvent();
+                    break;
+                case 2:
+                    updateEvent();
+                    break;
+                case 3:
+                    trackEvent();
+                    break;
+                case 4:
+                    backToMainMenu = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    public void participantMenu() {
+        boolean backToMainMenu = false;
+
+        while (!backToMainMenu) {
+            System.out.println("\nParticipant Menu:");
+            System.out.println("1. Register Participant");
+            System.out.println("2. Update Participant");
+            System.out.println("3. Track Participant");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    registerParticipant();
+                    break;
+                case 2:
+                    updateParticipant();
+                    break;
+                case 3:
+                    trackParticipant();
+                    break;
+                case 4:
+                    backToMainMenu = true;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    public void createEvent() {
+        try {
+            System.out.println("Enter event details:");
+            System.out.print("Event name: ");
+            String eventName = scanner.nextLine();
+            System.out.print("Event date (YYYY-MM-DD): ");
+            String eventDate = scanner.nextLine();
+            System.out.print("Event location: ");
+            String eventLocation = scanner.nextLine();
+
+            // Prepare the SQL statement
+            String sql = "INSERT INTO events (event_name, event_date, event_location) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, eventName);
+            statement.setString(2, eventDate);
+            statement.setString(3, eventLocation);
+
+            // Execute the SQL statement
+            statement.executeUpdate();
+            System.out.println("Event created successfully");
+        } catch (SQLException e) {
+            System.out.println("Error creating event");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEvent() {
+        try {
+            System.out.print("Enter event ID to update: ");
+            int eventId = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            System.out.println("Enter updated event details:");
+            System.out.print("Event name: ");
+            String eventName = scanner.nextLine();
+            System.out.print("Event date (YYYY-MM-DD): ");
+            String eventDate = scanner.nextLine();
+            System.out.print("Event location: ");
+            String eventLocation = scanner.nextLine();
+
+            // Prepare the SQL statement
+            String sql = "UPDATE events SET event_name=?, event_date=?, event_location=? WHERE event_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, eventName);
+            statement.setString(2, eventDate);
+            statement.setString(3, eventLocation);
+            statement.setInt(4, eventId);
+
+            // Execute the SQL statement
+            statement.executeUpdate();
+            System.out.println("Event updated successfully");
+        } catch (SQLException e) {
+            System.out.println("Error updating event");
+            e.printStackTrace();
+        }
+    }
+
+    public void trackEvent() {
+        try {
+            System.out.print("Enter event ID to track: ");
+            int eventId = scanner.nextInt();
+
+            // Prepare the SQL statement
+            String sql = "SELECT * FROM events WHERE event_id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, eventId);
+
+            // Execute the SQL statement
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println("Event ID: " + resultSet.getInt("event_id"));
+                System.out.println("Event Name: " + resultSet.getString("event_name"));
+                System.out.println("Event Date: " + resultSet.getString("event_date"));
+                System.out.println("Event Location: " + resultSet.getString("event_location"));
+            } else {
+                System.out.println("Event not found");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error tracking event");
+            e.printStackTrace();
+        }
+    }
+
+    public void registerParticipant() {
+        try {
+            System.out.println("Enter participant details:");
+            System.out.print("Participant name: ");
+            String participantName = scanner.nextLine();
+            System.out.print("Participant email: ");
+            String participantEmail = scanner.nextLine();
+            System.out.print("Event ID to register for: ");
+            int eventId = scanner.nextInt();
+
+            // Consume newline character
+            scanner.nextLine();
+
+            // Prepare the SQL statement
+            String sql = "INSERT INTO participants (participant_name, participant_email, event_id) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, participantName);
+            statement.setString(2, participantEmail);
+            statement.setInt(3, eventId);
+
+            // Execute the SQL statement
+            statement.executeUpdate();
+            System.out.println("Participant registered successfully");
+        } catch (SQLException e) {
+            System.out.println("Error registering participant");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateParticipant() {
+        try {
+            System.out.print("Enter participant email to update: ");
+            String participantEmail = scanner.nextLine();
+
+            System.out.println("Enter updated participant details:");
+            System.out.print("Participant name: ");
+            String participantName = scanner.nextLine();
+            System.out.print("Event ID to update registration: ");
+            int eventId = scanner.nextInt();
+
+            // Consume newline character
+            scanner.nextLine();
+
+            // Prepare the SQL statement
+            String sql = "UPDATE participants SET participant_name=?, event_id=? WHERE participant_email=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, participantName);
+            statement.setInt(2, eventId);
+            statement.setString(3, participantEmail);
+
+            // Execute the SQL statement
+            statement.executeUpdate();
+            System.out.println("Participant updated successfully");
+        } catch (SQLException e) {
+            System.out.println("Error updating participant");
+            e.printStackTrace();
+        }
+    }
+
+    public void trackParticipant() {
+        try {
+            System.out.print("Enter participant email to track: ");
+            String participantEmail = scanner.nextLine();
+
+            // Prepare the SQL statement
+            String sql = "SELECT * FROM participants WHERE participant_email=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, participantEmail);
+
+            // Execute the SQL statement
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println("Participant Name: " + resultSet.getString("participant_name"));
+                System.out.println("Participant Email: " + resultSet.getString("participant_email"));
+                System.out.println("Event ID: " + resultSet.getInt("event_id"));
+            } else {
+                System.out.println("Participant not found");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error tracking participant");
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        EventManagementSystem eventSystem = new EventManagementSystem();
+        eventSystem.displayMainMenu();
+        eventSystem.closeConnection();
+    }
+}

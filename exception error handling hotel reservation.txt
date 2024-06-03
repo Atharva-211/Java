@@ -1,0 +1,97 @@
+package first;
+
+import java.util.Scanner;
+
+public class a1 {
+    private String guestName;
+    private int roomNumber;
+    private String reservationDate;
+    private int numberOfGuests;
+
+    // Constructor
+    public a1(String guestName, int roomNumber, String reservationDate, int numberOfGuests) {
+        try {
+            if (guestName == null) {
+                throw new NullPointerException("Guest name cannot be null.");
+            }
+            if (roomNumber <= 0) {
+                throw new IllegalArgumentException("Room number must be positive.");
+            }
+            if (reservationDate == null) {
+                throw new NullPointerException("Reservation date cannot be null.");
+            }
+            if (numberOfGuests <= 0) {
+                throw new IllegalArgumentException("Number of guests must be positive.");
+            }
+            this.guestName = guestName;
+            this.roomNumber = roomNumber;
+            this.reservationDate = reservationDate;
+            this.numberOfGuests = numberOfGuests;
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.err.println("Error initializing reservation: " + e.getMessage());
+        } finally {
+            System.out.println("Reservation initialization attempted.");
+        }
+    }
+
+    // Method to get reservation details from user
+    public static a1 getReservationDetailsFromUser() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter guest name: ");
+            String guestName = scanner.nextLine();
+
+            System.out.print("Enter room number: ");
+            int roomNumber = scanner.nextInt();
+
+            System.out.print("Enter reservation date (yyyy-mm-dd): ");
+            String reservationDate = scanner.next();
+
+            System.out.print("Enter number of guests: ");
+            int numberOfGuests = scanner.nextInt();
+
+            return new a1(guestName, roomNumber, reservationDate, numberOfGuests);
+        } catch (Exception e) {
+            System.err.println("Error while taking reservation details: " + e.getMessage());
+            return null;
+        } finally {
+            System.out.println("User input operation completed.");
+        }
+    }
+
+    // Method to print reservation details
+    public void printReservationDetails() {
+        try {
+            if (this.guestName == null) {
+                throw new NullPointerException("Guest name is not initialized.");
+            }
+            if (this.roomNumber <= 0) {
+                throw new IllegalArgumentException("Invalid room number.");
+            }
+            if (this.reservationDate == null) {
+                throw new NullPointerException("Reservation date is not initialized.");
+            }
+            if (this.numberOfGuests <= 0) {
+                throw new IllegalArgumentException("Invalid number of guests.");
+            }
+
+            System.out.println("Reservation Details:");
+            System.out.println("Guest Name: " + this.guestName);
+            System.out.println("Room Number: " + this.roomNumber);
+            System.out.println("Reservation Date: " + this.reservationDate);
+            System.out.println("Number of Guests: " + this.numberOfGuests);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.err.println("Error displaying reservation details: " + e.getMessage());
+        } finally {
+            System.out.println("Reservation display operation completed.");
+        }
+    }
+
+    // Main method to test the class
+    public static void main(String[] args) {
+        a1 reservation = a1.getReservationDetailsFromUser();
+        if (reservation != null) {
+            reservation.printReservationDetails();
+        }
+    }
+}

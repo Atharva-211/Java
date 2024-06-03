@@ -1,0 +1,84 @@
+package first;
+
+public class a1 {
+
+    static class Person {
+        private String name;
+        private int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void introduce() {
+            System.out.println("Hi, my name is " + name + " and I am " + age + " years old.");
+        }
+    }
+
+    interface Employee {
+        void work();
+        double getSalary();
+    }
+
+    interface Student {
+        void study();
+        String getMajor();
+    }
+
+    static class WorkingStudent extends Person implements Employee, Student {
+        private double salary;
+        private String major;
+
+        public WorkingStudent(String name, int age, double salary, String major) {
+            super(name, age);
+            this.salary = salary;
+            this.major = major;
+        }
+
+        // Implement Employee methods
+        @Override
+        public void work() {
+            System.out.println(getName() + " is working and earning a salary of " + salary);
+        }
+
+        @Override
+        public double getSalary() {
+            return salary;
+        }
+
+        // Implement Student methods
+        @Override
+        public void study() {
+            System.out.println(getName() + " is studying " + major);
+        }
+
+        @Override
+        public String getMajor() {
+            return major;
+        }
+    }
+
+    public static void main(String[] args) {
+        WorkingStudent john = new WorkingStudent("John Doe", 22, 20000, "Computer Science");
+
+        // Using methods from the Person class
+        john.introduce();
+
+        // Using methods from the Employee interface
+        john.work();
+        System.out.println("Salary: " + john.getSalary());
+
+        // Using methods from the Student interface
+        john.study();
+        System.out.println("Major: " + john.getMajor());
+    }
+}

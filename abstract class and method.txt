@@ -1,0 +1,29 @@
+package first;
+public class a1 {
+    public static abstract class Operation {
+        Operation() {
+            System.out.println("This is an Operation");
+        }
+
+        abstract double performOperation(double num1, double num2);
+    }
+
+    public static class Addition extends Operation {
+        Addition() {
+            super();
+        }
+
+        @Override
+        double performOperation(double num1, double num2) {
+            return num1 + num2;
+        }
+    }
+
+    public static void main(String[] args) {
+        Addition additionOperation = new Addition();
+        double num1 = 5.0;
+        double num2 = 3.0;
+
+        System.out.println("Sum: " + additionOperation.performOperation(num1, num2));
+    }
+}

@@ -1,0 +1,32 @@
+package first;
+
+public class a1 {
+    public static class demo {
+        int xnew;
+        String name;
+
+        // Parameterized constructor for demo class
+        demo(int x, String str) {
+            this.xnew = x;
+            this.name = str;
+        }
+    }
+
+    public static class demo2 extends demo {
+        // Parameterized constructor for demo2 class
+        demo2(int x, String str) {
+            super(x, str); // Call to demo's constructor
+        }
+
+        // Method to print the values
+        void print() {
+            System.out.println(this.xnew + " " + this.name);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of demo2 with parameters
+        demo2 obj = new demo2(100, "mohammed");
+        obj.print(); // Output the values
+    }
+}
