@@ -1,0 +1,103 @@
+package Assignment2;
+
+class Employee {
+	private int employeeId;
+	private String firstName;
+	private String lastName;
+	private String dateOfBirth;
+	private int salary;
+	
+	public Employee(int employeeId,String firstName,String lastName,String dateOfBirth,int salary) {
+		this.employeeId =employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+	}
+	
+	public int GetID() {
+		return employeeId;
+	}
+	public String GetFN(){
+		return firstName;
+	}
+	public String GetLn(){
+		return lastName;
+	}
+	public String GetDOB(){
+		return lastName;
+	}
+	public int GetSal() {
+		return salary;
+	}
+	
+	public void SETID(int employeeId) {
+		if(employeeId > 0) {
+			this.employeeId = employeeId;
+		}else {
+			System.out.println("invalid ID");
+		}
+	}
+	public void SETFN(String firstName){
+		if(firstName != null) {
+			this.firstName = firstName;
+		}else {
+			System.out.println("invalid Fname");
+		}
+	}
+	public void SETLn(String lastName){
+		if(lastName != null) {
+			this.lastName = lastName;
+		}else {
+			System.out.println("invalid Lname");
+		}
+	}
+	public void SETDOB(String dateOfBirth){
+		if(dateOfBirth != null) {
+			this.dateOfBirth = dateOfBirth;
+		}else {
+			System.out.println("invalid DOB");
+		}
+	}
+	public void SETSal(int salary) {
+		if(salary > 0) {
+			this.salary = salary;
+		}else {
+			System.out.println("invalid salary");
+		}
+	}
+	
+	public double calcbon() {
+		return salary * 0.10;
+	}
+	
+//	public void Display() {
+//		System.out.println("employeeId : " + employeeId);
+//		System.out.println("firstName : " + firstName);
+//		System.out.println("lastName : " + lastName);
+//		System.out.println("dateOfBirth : " + dateOfBirth);
+//		System.out.println("salary : " + salary);
+//	}
+}
+
+public class EmpMan {
+	public static void main(String[] args) {
+		Employee employee = new Employee(12, "Atharva", "gaikwad", "2002", 1000);
+		
+		System.out.println("employeeId : " + employee.GetID());
+		System.out.println("firstName : " + employee.GetLn());
+		System.out.println("lastName : " + employee.GetDOB());
+		System.out.println("dateOfBirth : " + employee.GetDOB());
+		System.out.println("salary : " + employee.GetSal());
+		
+		employee.SETID(-10);
+		employee.SETLn("hhhh");
+		
+		System.out.println("employeeId : " + employee.GetID());
+		System.out.println("firstName : " + employee.GetLn());
+		System.out.println("lastName : " + employee.GetDOB());
+		System.out.println("dateOfBirth : " + employee.GetDOB());
+		System.out.println("salary : " + employee.GetSal());
+	}
+
+}

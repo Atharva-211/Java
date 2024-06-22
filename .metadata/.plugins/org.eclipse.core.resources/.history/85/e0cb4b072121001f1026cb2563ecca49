@@ -1,0 +1,12 @@
+package Assignment2;
+
+class Employee {
+	private int employeeId;
+	private String firstName;
+	private String lastName;
+	
+}
+
+public class EmpMan {
+
+}

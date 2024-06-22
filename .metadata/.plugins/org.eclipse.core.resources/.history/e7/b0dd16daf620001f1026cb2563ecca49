@@ -1,0 +1,35 @@
+package Assignment1;
+
+class productt {
+	private String name;
+	private int prize;
+	private float quantity;
+	
+	public productt() {
+		this.name = "atharva";
+		this.prize = 200;
+		this.quantity = 1.5;
+	}
+	
+	public productt(String name, int prize, float quantity) {
+		this.name = name;
+		this.prize = prize;
+		this.quantity = quantity;
+	}
+	
+	public void displayy() {
+		System.out.println("name : " + name);
+		System.out.println("prize : " + prize);
+		System.out.println("quantity : " + quantity);
+	}
+}
+
+public class cons {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		productt defauntproduct = new.productt;
+
+	}
+
+}

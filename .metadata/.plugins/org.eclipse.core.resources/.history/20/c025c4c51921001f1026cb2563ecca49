@@ -1,0 +1,58 @@
+package Assignment2;
+
+class Account {
+	protected double balance;
+	
+	public Account(double balance) {
+		this.balance = balance;
+	}
+	
+	public deposit() {
+		
+	}
+	
+	public abstract void withdraw(double amount);
+}
+
+class SavingsAccount extends Account {
+	
+	public SavingsAccount(double balance) {
+		super(balance);
+	}
+	
+	@Override
+	public void withdraw() {
+		
+	}
+	
+	//overloadding
+	public void withdraw(double amount, String reason) {
+		
+	}
+	
+}
+
+class CheckingAccount extends Account {
+	private double overdraft;
+	
+	public CheckingAccount(double balance, double overdraft) {
+		super(balance);
+		this.overdraft= overdraft;
+	}
+	
+	@Override
+	public void withdraw() {
+		
+	}
+	
+	
+}
+
+public class Polymorphism {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	
+	}
+
+}

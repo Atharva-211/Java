@@ -1,0 +1,93 @@
+package Assignment2;
+
+
+class Account {
+	protected double balance;
+	
+	public Account(double initialbalance) {
+		this.balance= initialbalance;
+	}
+	
+	public void deposite(double Amount) {
+		if (Amount>0) {
+			balance += Amount;
+			System.out.println("Deposite : "+ Amount);
+		}
+	}
+	
+	public void withdraw(double amount) {
+		if (amount >0 && amount <= balance) {
+			balance -= amount;
+			System.out.println("withdraw : "+amount);
+		}else {
+			System.out.println("Insufficient balance or invalid amount");
+		}
+	}
+	
+	public double getBalance() {
+		return balance;
+	}
+}
+
+class SavingAccount extends Account {
+	
+	public SavingAccount(double initialbalance) {
+		super(initialbalance);
+	}
+	
+	public void withdraw(double amount, String reason) {
+		if (amount >0 && amount <= balance) {
+			balance -= amount;
+			System.out.println("withdraw : "+amount + " for "+ reason);
+		}else {
+			System.out.println("Insufficient balance or invalid amount" + " for "+ reason);
+		}
+	}
+	
+	@Override
+	public void withdraw(double amount) {
+		withdraw (amount , "general purpose");
+	}
+	
+}
+
+class CheckingAccount extends Account {
+	private double overdraftlimits;
+	
+	public CheckingAccount (double initialbalance, double overdraftlimits) {
+		super(initialbalance);
+		this.overdraftlimits=overdraftlimits;
+	}
+	
+	
+	public void withdraw(double amount) {
+		if (amount >0 && amount <= balance + overdraftlimits) {
+			balance -= amount;
+			System.out.println("withdraw : "+amount + " overdraftlimits ");
+		}else {
+			System.out.println("Insufficient balance or overdraftlimits" );
+		}
+	}
+}
+
+public class Polymorphism {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Account savings = new SavingAccount(1000);
+		Account checking = new CheckingAccount(500, 200); // Initial balance, overdraft limit
+
+        // Demonstrate polymorphism
+        System.out.println("Savings Account:");
+        savings.withdraw(200); // General withdraw
+        ((SavingAccount) savings).withdraw(50, "holiday expenses"); // Withdraw with reason (method overloading)
+        System.out.println("Balance: $" + savings.getBalance());
+
+        System.out.println("\nChecking Account:");
+        checking.withdraw(600); // Withdraw with overdraft protection (method overriding)
+        System.out.println("Balance: $" + checking.getBalance());
+
+	}
+
+}

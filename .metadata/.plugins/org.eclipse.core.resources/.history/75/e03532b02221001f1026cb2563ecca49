@@ -1,0 +1,23 @@
+package Assignment2;
+
+class Employee {
+	private int employeeId;
+	private String firstName;
+	private String lastName;
+	private String dateOfBirth;
+	private int salary;
+	
+	public Employee(int employeeId,String firstName,String lastName,String dateOfBirth,int salary) {
+		setEmpId(employeeId);
+		setFN(firstName);
+		setLN(lastName);
+		setDOB(dateOfBirth);
+		setSAL(salary);
+	}
+	
+	
+}
+
+public class EmpMan {
+
+}

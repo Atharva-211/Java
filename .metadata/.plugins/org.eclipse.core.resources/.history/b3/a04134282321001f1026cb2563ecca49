@@ -1,0 +1,57 @@
+package Assignment2;
+
+class Employee {
+	private int employeeId;
+	private String firstName;
+	private String lastName;
+	private String dateOfBirth;
+	private int salary;
+	
+	public Employee(int employeeId,String firstName,String lastName,String dateOfBirth,int salary) {
+		this.employeeId =employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.salary = salary;
+	}
+	
+	private void GetID(int employeeId) {
+		return employeeId;
+	}
+	private void GetFN(String firstName){
+		return firstName;
+	}
+	private void GetLn(String lastName){
+		return lastName;
+	}
+	private void GetDOB(String dateOfBirth){
+		return lastName;
+	}
+	private void GetSal(int salary) {
+		return salary;
+	}
+	
+	private void SETID(int employeeId) {
+		return employeeId;
+	}
+	private void SETFN(String firstName){
+		return firstName;
+	}
+	private void SETLn(String lastName){
+		return lastName;
+	}
+	private void SETDOB(String dateOfBirth){
+		return lastName;
+	}
+	private void SETSal(int salary) {
+		return salary;
+	}
+	
+	
+	
+	
+}
+
+public class EmpMan {
+
+}

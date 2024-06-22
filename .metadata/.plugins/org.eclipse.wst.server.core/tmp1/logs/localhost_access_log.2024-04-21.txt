@@ -1,0 +1,8 @@
+127.0.0.1 - - [21/Apr/2024:16:50:35 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [21/Apr/2024:16:50:35 +0530] "GET /Assignment7/InitializerServlet HTTP/1.1" 200 59
+127.0.0.1 - - [21/Apr/2024:16:52:21 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [21/Apr/2024:16:52:22 +0530] "GET /servlet/servlet/welcome.InitializerServlet HTTP/1.1" 404 802
+127.0.0.1 - - [21/Apr/2024:16:53:17 +0530] "GET /Assignment7/InitializerServlet HTTP/1.1" 200 56
+127.0.0.1 - - [21/Apr/2024:16:53:18 +0530] "GET / HTTP/1.1" 404 752
+127.0.0.1 - - [21/Apr/2024:16:57:26 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [21/Apr/2024:16:57:26 +0530] "GET /Assignment8/InitializerServlet HTTP/1.1" 200 56

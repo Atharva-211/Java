@@ -1,0 +1,44 @@
+package Assignment1;
+
+
+class product{
+	
+	private String name;
+	private double price;
+	private int quantity;
+	
+	public product() {
+		this.name="Atharva";
+		this.price=90.0;
+		this.quantity=30;
+	}
+	
+	public product(String name, double price, int quantity) {
+		this.name=name;
+		this.price=price;
+		this.quantity=quantity;
+	}
+	
+	public void display() {
+		System.out.println("name= " + name);
+		System.out.println("price= "+ price);
+		System.out.println("quantity= "+ quantity);
+	}
+}
+
+
+public class constructor {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		product defaultproduct = new product();
+		System.out.println("Default");
+		defaultproduct.display();
+
+		product define = new product("hii", 12.1, 13);
+		System.out.println("Default");
+		define.display();
+	}
+
+}

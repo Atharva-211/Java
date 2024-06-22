@@ -1,0 +1,29 @@
+package Assignment2;
+
+class Account {
+	
+	public deposit() {
+		
+	}
+	
+	public withdraw() {
+		
+	}
+}
+
+class SavingsAccount extends Account {
+	@Override
+	public void withdraw() {
+		
+	}
+	
+}
+
+public class Polymorphism {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	
+	}
+
+}
